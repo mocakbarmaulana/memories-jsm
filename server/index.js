@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 
 import postRoutes from "./routes/posts.js";
+import userRoutes from "./routes/user.js";
 
 dotenv.config();
 
@@ -14,6 +15,11 @@ app.use(express.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
 app.use('/posts', postRoutes);
+app.use('/user', userRoutes);
+
+app.use('/', (req, res) => {
+    res.send('Hello to memories API');
+})
 
 const PORT = parseInt(process.env.PORT) || 5000;
 
